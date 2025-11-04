@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:user-invalid {
+            background-color: salmon;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Confirmación de contraseña</h1>
+    <form action="procesar.php" method="get" id="registroForm">
+        <p>
+            <label for="pass1">Contraseña (min. 8 caracteres):</label>
+            <input type="password" id="pass1" name="pass1" required minlength="8">
+        </p>
+        <p>
+            <label for="pass2">Contraseña (min. 8 caracteres):</label>
+            <input type="password" id="pass2" name="pass2" required minlength="8">
+            <span id="passError" class="error"></span>
+        </p>
+        <p>
+            <button type="submit">Enviar</button>
+        </p>
+    </form>
+
+    <script>
+        const pass1Input = document.getElementById('pass1');
+        const pass2Input = document.getElementById('pass2');
+        const form = document.getElementById('registroForm');
+        const passErrorSpan =document.getElementById('passError');
+
+        function checkPasswords(){
+            if (pass1Input.value === pass2Input.value){
+                pass2Input.setCustomValidity('');
+                passErrorSpan.textContent = '';
+            } else {
+                errorText="Las contraseñas no coinciden.";
+                pass2Input.setCustomValidity(errorText);
+                passErrorSpan.textContent = errorText;
+            }
+
+        }
+        pass1Input.addEventListener('change', checkPasswords);
+        pass2Input.addEventListener('change', checkPasswords);
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input:user-valid, textarea:user-valid {
+            border: 1px solid greenyellow;
+        }
+
+        input:user-invalid, textarea:user-invalid {
+            border: 1px solid red;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <h1>Validacion sencilla con HTML5</h1>
+    <form action="procesar.php" method="get">
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" required  minlength="3" pattern="[A-Z]+"> <!-- pattern todo mayusculas-->
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" required>
+        </p>
+        <p>
+            <label for="edad">Edad</label>
+            <input type="number" name="edad" required min="18" max="120">
+        </p>
+        <p>
+            <label for="descripcion">Descripción:</label>
+            <textarea name="edad" id="descripcion" required minlength="20"></textarea>
+        </p>
+        <p>
+            <button type="submit">Enviar</button>
+           
+        </p>
+    </form>
+</body>
+</html>
