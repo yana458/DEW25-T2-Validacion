@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="process.php" method="post">
+        <div>
+            <input type="checkbox" id="chkDomicilio">
+            <label for="chkDomicilio">Envío a domicilio</label>
+        </div>
+        <div id="campoDireccion" style="display: none;">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion"> 
+        </div>
+        <p>
+            <button type="submit">Enviar</button>
+        </p>
+    </form>
+
+    <script>
+        const chkDomicilio = document.getElementById('chkDomicilio');
+        const divCampoDireccion = document.getElementById('campoDireccion');
+        const inputDireccion = document.getElementById('direccion');
+
+        chkDomicilio.addEventListener('change', () => {
+            if(chkDomicilio.checked){
+                divCampoDireccion.style.display = "block";
+            } else {
+                divCampoDireccion.style.display = "none";
+            }
+
+           //Otra opcion: ternario:
+           //divCampoDireccion.style.display= chkDomicilio.checked ? 'block' : 'none';
+           inputDireccion.required = chkDomicilio.checked;
+        });
+    </script>
+</body>
+</html>
