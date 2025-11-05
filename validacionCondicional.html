@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <form action="process.php" method="post">
@@ -11,7 +16,7 @@
             <input type="checkbox" id="chkDomicilio">
             <label for="chkDomicilio">Envío a domicilio</label>
         </div>
-        <div id="campoDireccion" style="display: none;">
+        <div id="campoDireccion" class="hidden">
             <label for="direccion">Dirección:</label>
             <input type="text" id="direccion" name="direccion"> 
         </div>
@@ -26,14 +31,25 @@
         const inputDireccion = document.getElementById('direccion');
 
         chkDomicilio.addEventListener('change', () => {
-            if(chkDomicilio.checked){
-                divCampoDireccion.style.display = "block";
-            } else {
-                divCampoDireccion.style.display = "none";
-            }
+           
+            //si usamos esta opcion hay que poner: <div id="campoDireccion" style="display: none;">
+            
+            // if(chkDomicilio.checked){
+            //     divCampoDireccion.style.display = "block";
+            // } else {
+            //     divCampoDireccion.style.display = "none";
+            // }
 
            //Otra opcion: ternario:
            //divCampoDireccion.style.display= chkDomicilio.checked ? 'block' : 'none';
+
+            // otra forma con estilo hidden 
+             if(chkDomicilio.checked){
+                divCampoDireccion.classList.remove('hidden');
+            } else {
+                divCampoDireccion.classList.add('hidden');
+            }
+
            inputDireccion.required = chkDomicilio.checked;
         });
     </script>
