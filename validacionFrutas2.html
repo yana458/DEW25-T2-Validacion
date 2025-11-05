@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="frutas.js"></script>
+</head>
+<body>
+    <form action="procesar.php" method="get" id="formFrutas">
+        <fieldset>
+            <legend>Elige una fruta:</legend>
+            <ul id="frutas">
+                <!-- <li>
+                    <input type="radio" name="fruta" id="kiwi" value="kiwi" required>
+                    <label for="kiwi">Kiwi</label>
+                </li> -->
+                <!-- <li>
+                    <input type="radio" name="fruta" id="manzana" value="manzana">
+                    <label for="manzana">Manzana</label>
+                </li> -->
+            </ul>
+        </fieldset>
+        <p>
+        <button type="submit">Enviar</button>
+        </p>
+    </form>
+
+    <script>
+        const ulFrutas = document.getElementById('frutas');
+        const formFrutas = document.getElementById('formFrutas');
+
+        frutas.forEach(fruta => {
+            insertFruta(fruta);
+        });
+
+        function insertFruta(fruta) {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                    <input type="checkbox" name="frutas[]" id="${fruta}" value="${fruta}">
+                    <label for="${fruta}">${fruta}</label>
+            `;
+            ulFrutas.append(li);
+        }
+
+        //crea array con opciones seleccionadas de chekbox
+        function getCheckedValues(groupName) {
+            const checkboxes = document.getElementsByName(groupName);
+            const values = [];
+            for (let cb of checkboxes) {
+                if (cb.checked) {
+                    values.push(cb.value);
+                }
+            }
+        return values; // Devuelve un array, ej: ["musica", "deporte"]
+}
+
+      ulFrutas.addEventListener('change', (event) => {
+            if(event.target.tagName === 'INPUT'){
+                console.log('chequear', event.target);
+                let frutasSeleccionadas = getCheckedValues('frutas[]');
+                console.log(frutasSeleccionadas.length);
+                 
+
+                if(frutasSeleccionadas.length > 0){
+                    inputFruta.setCustomValidity('');
+                }else{
+                    inputFruta.setCustomValidity('Tienes que elegir una fruta');
+                }
+            }
+        } );
+        const inputFruta = document.querySelector('input[name="frutas[]"]');
+        inputFruta.setCustomValidity("Tienes que elegir una fruta");
+
+    // formFrutas.addEventListener('submit', (event) => {
+    //     event.preventDefault();
+
+    //     let frutasSeleccionadas = getCheckedValues('frutas[]');
+    //     const inputFruta = document.querySelector('input[name="frutas[]"]')
+
+    //     if(frutasSeleccionadas.length > 0) {
+    //         inputFruta.setCustomValidity("");
+    //     } else {
+    //         inputFruta.setCustomValidity("Debes seleccionar al menos una fruta");
+    //     }
+
+    //     if(formFrutas.checkValidity()){
+    //         alert('Formulario correcto');
+    //         //formFrutas.submit();
+    //     }else{
+    //         alert('Formulario incorrecto');
+    //     }
+       
+    // });
+        
+    </script>
+</body>
+</html>

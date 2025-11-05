@@ -1,0 +1,1 @@
+const frutas = ["pera", "uva", "melocotón", "kiwi", "plátano", "naranja", "manzana", "papaya"];
